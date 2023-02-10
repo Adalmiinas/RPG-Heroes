@@ -8,14 +8,14 @@ namespace Assignment_1.Items
 {
     internal class Item
     {
-        public string name { get; set; }   
-        public int rqlevel { get; set; }
-        public Slots slot { get; set; }   
+        public string Name { get; set; }   
+        public int RqLevel { get; set; }
+        public Slot SlotPlace { get; set; }   
 
-        public Item(string name, int rqlevel, Slots slot) { 
-            this.name = name;
-            this.rqlevel = rqlevel; 
-            this.slot = slot;
+        public Item(string name, int rqlevel, Slot slot) { 
+            this.Name = name;
+            this.RqLevel = rqlevel; 
+            this.SlotPlace = slot;
         }   
     }
 }

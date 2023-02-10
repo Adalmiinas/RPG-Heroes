@@ -4,16 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment_1.Items
-{
-    internal class Slots
-    {
-        enum Slot
+     
+        public enum Slot
         {
             Weapon,
             Head,
             Body,
             Legs
-        }
-    }
-}
+        };

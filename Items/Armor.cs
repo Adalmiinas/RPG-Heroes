@@ -8,15 +8,15 @@ using System.Xml.Linq;
 
 namespace Assignment_1.Items
 {
-    internal class Armor
+    internal class Armor: Item
     {
         public ArmorType Type { get; set; }
         public HeroAttribute ArmorAtribute { get; set; }    
 
-        public Armor(ArmorType armor, HeroAttribute armotAtribute) : base()
+        public Armor(String name, int rqlevel, Slot slot, ArmorType armor, HeroAttribute armorAtribute) : base(name, rqlevel, slot)
         {
             this.Type = armor;
-            this.ArmorAtribute = armotAtribute;
+            this.ArmorAtribute = armorAtribute;
 
         }
     }
