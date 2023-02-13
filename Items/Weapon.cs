@@ -19,7 +19,5 @@ namespace Assignment_1.Items
             Type = type;
             WeaponDamage = dam;
         }
-
-
     }
 }

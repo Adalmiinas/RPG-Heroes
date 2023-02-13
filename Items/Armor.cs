@@ -17,7 +17,6 @@ namespace Assignment_1.Items
         {
             this.Type = armor;
             this.ArmorAtribute = armorAtribute;
-
         }
     }
 }

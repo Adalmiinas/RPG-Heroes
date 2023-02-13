@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
      
-        public enum Slot
-        {
-            Weapon,
-            Head,
-            Body,
-            Legs
-        };
+public enum Slot
+{
+    Weapon,
+    Head,
+    Body,
+    Legs
+};

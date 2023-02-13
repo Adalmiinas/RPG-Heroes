@@ -1,5 +1,6 @@
 ﻿using Assignment_1.Items;
 using System.Diagnostics;
+using System.Text;
 
 namespace Assignment_1.Heroes
 {
@@ -11,11 +12,8 @@ namespace Assignment_1.Heroes
         public WeaponType[] ValidWeaponType { get;  set;}
         public ArmorType[] ValidArmorTypes { get; set; }
         public HeroAttribute LevelAttributes { get; set; }
+        public Dictionary<Slot, Item?> equipment { get; set; } 
 
-        public Dictionary<Slot, Item> equiment { get; set; } 
-
-
-       
         public Hero(string name, int level, WeaponType [] ValidW, ArmorType [] ValidA, HeroAttribute LevelAttributes)
         {
             this.Name = name;
@@ -23,9 +21,10 @@ namespace Assignment_1.Heroes
             this.LevelAttributes = LevelAttributes;
             this.ValidWeaponType = ValidW;
             this.ValidArmorTypes = ValidA;
+            equipment = new Dictionary<Slot, Item?>();
             foreach (Slot i in Enum.GetValues(typeof (Slot)))
             {
-                equiment?.Add(i, null);
+                equipment.Add(i, null);
             }
         }
 
@@ -42,19 +41,47 @@ namespace Assignment_1.Heroes
 
         }
 
-        public virtual void Damage()
+        public virtual string Display()
         {
+            CalculateAttributes();
+
+            StringBuilder displayStats= new StringBuilder();
+
+            displayStats.Append(" \n");
+            displayStats.Append("Your character: \n");
+            displayStats.Append("Name: " + Name + "\n");
+            displayStats.Append("Class: " + getHero() + "\n");
+            displayStats.Append("Total strength: " + this.LevelAttributes.Strength + "\n");
+            displayStats.Append("Total dexterity: " + this.LevelAttributes.Dexterity + "\n");
+            displayStats.Append("Total intelligence: " + this.LevelAttributes.Intelligence + "\n");
+            displayStats.Append("Level: " + Level + "\n");
+            displayStats.Append("Damage: " + CalculateDamage() + "\n");
+
+            return displayStats.ToString();
 
         }
 
-        public virtual void TotalAttribute()
-        {
-
+        public void CalculateAttributes(){
+            
+            foreach (Item? item in equipment.Values)
+            {
+                if (item == null || item.SlotPlace == Slot.Weapon)  continue; 
+                
+                    Armor armor = (Armor)item;
+                    this.LevelAttributes.Strength += armor.ArmorAtribute.Strength;
+                    this.LevelAttributes.Dexterity += armor.ArmorAtribute.Dexterity;
+                    this.LevelAttributes.Intelligence += armor.ArmorAtribute.Intelligence;
+                
+            }
         }
-        public virtual void Display()
+        public virtual decimal CalculateDamage() 
         {
-
+            return 1;
         }
 
+        public virtual string getHero()
+        {
+            return "";
+        }
     }
 }
