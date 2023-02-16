@@ -10,10 +10,13 @@ namespace RPG_Heroes
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello User!");
+            Console.WriteLine("Hello friend!");
 
             Boolean cont = true;
-            Dictionary<int, Hero> currentHero = new Dictionary<int, Hero> ();
+
+            Dictionary<int, Hero?> currentHero = new Dictionary<int, Hero?> ();
+            currentHero.Add(1, null);
+
             Dictionary<int, Weapon> weapons = new Dictionary<int, Weapon>
             {
                 { 1, new Weapon("Aggressive Axe", 1, Slot.Weapon, WeaponType.axe, 2) },
@@ -35,7 +38,7 @@ namespace RPG_Heroes
 
             while (cont) {
                 Console.WriteLine(" \n" +
-                  "You can use these commands: \n" +
+                "You can use these commands: \n" +
                 "hero - create a new hero \n" +
                 "level - level up your character \n" +
                 "equip - get a armor or weapon \n"+ 
@@ -57,7 +60,7 @@ namespace RPG_Heroes
 
                                 Mage mage = new Mage(name1);
 
-                                currentHero.Add(1, mage);
+                                currentHero[1] = mage;
 
                                 Console.WriteLine("You have made a Mage hero with a name " + currentHero[1].Name);
                                 break;
@@ -68,7 +71,7 @@ namespace RPG_Heroes
 
                                 Ranger ranger = new Ranger(name2);
 
-                                currentHero.Add(1, ranger);
+                                currentHero[1] = ranger;
 
                                 Console.WriteLine("You have made a Ranger hero with a name " + currentHero[1].Name);
                                 break;
@@ -79,7 +82,7 @@ namespace RPG_Heroes
 
                                 Rogue rogue = new Rogue(name3);
 
-                                currentHero.Add(1, rogue);
+                                currentHero[1] = rogue;
 
                                 Console.WriteLine("You have made a Rogue hero with a name " + currentHero[1].Name);
                                 break;
@@ -90,7 +93,7 @@ namespace RPG_Heroes
 
                                 Warrior warrior = new Warrior(name4);
 
-                                currentHero.Add(1, warrior);
+                                currentHero[1] = warrior;
 
                                 Console.WriteLine("You have made a Warrior hero with a name " + currentHero[1].Name);
                                 break;
@@ -103,7 +106,7 @@ namespace RPG_Heroes
                         break;
 
                     case "level":
-                        if(currentHero.Count == 0)
+                        if (currentHero[1] == null)
                         {
                             Console.WriteLine("You have to create a hero first!");
                         }
@@ -130,7 +133,7 @@ namespace RPG_Heroes
                                 }
                                 string numberCommand = Console.ReadLine();
                                 int armorNumber;
-                                if (numberCommand != "" || int.TryParse(numberCommand, out armorNumber))
+                                if (numberCommand != "" || numberCommand != null || int.TryParse(numberCommand, out armorNumber))
                                 {
                                     armorNumber = int.Parse(numberCommand);
 
@@ -159,7 +162,7 @@ namespace RPG_Heroes
                                 }
                                 string numberCommand2 = Console.ReadLine();
                                 int weaponNumber;
-                                if (numberCommand2 != "" || int.TryParse(numberCommand2, out weaponNumber))
+                                if (numberCommand2 != "" || numberCommand2 != null || int.TryParse(numberCommand2, out weaponNumber))
                                 {
                                     weaponNumber = int.Parse(numberCommand2);
                                     try
@@ -185,7 +188,7 @@ namespace RPG_Heroes
                         break;
 
                     case "display":
-                        if (currentHero.Count == 0)
+                        if (currentHero[1] == null)
                         {
                             Console.WriteLine("You have to make a hero first!");
                         }
@@ -200,7 +203,6 @@ namespace RPG_Heroes
 
                     default:
                         Console.WriteLine("Not a valid command! Try again \n ");
-                     
                         break;
                 }
             }

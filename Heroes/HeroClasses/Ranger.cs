@@ -12,7 +12,7 @@ namespace RPG_Heroes.Heroes.HeroClasses
     public class Ranger : Hero
     {
 
-        public Ranger(string name) : base(name, 1,
+        public Ranger(string name) : base(name, 1, "Ranger",
             new WeaponType[] { WeaponType.bow }, new ArmorType[] { ArmorType.leather, ArmorType.mail },
             new HeroAttribute(1, 7, 1))
         {
@@ -24,43 +24,6 @@ namespace RPG_Heroes.Heroes.HeroClasses
             LevelAttributes.Strength += 1;
             LevelAttributes.Dexterity += 5;
             LevelAttributes.Intelligence += 1;
-        }
-
-        public override void EquipArmor(Armor armor)
-        {
-            if (armor.RqLevel > Level) throw new InvalidArmorException("Your level is not high enough!");
-            if (ValidArmorTypes.Contains(armor.Type))
-            {
-                if (equipment[Slot.Body] != null)
-                {
-                    Armor previousArmor = (Armor)equipment[Slot.Body];
-                    this.LevelAttributes.Strength -= previousArmor.ArmorAtribute.Strength;
-                    this.LevelAttributes.Dexterity -= previousArmor.ArmorAtribute.Dexterity;
-                    this.LevelAttributes.Intelligence -= previousArmor.ArmorAtribute.Intelligence;
-
-                }
-                equipment[armor.SlotPlace] = armor;
-                CalculateAttributes();
-                Console.WriteLine("You have equiped a armor: " + armor.Type);
-            }
-            else
-            {
-                throw new InvalidArmorException("Your hero cannot equip this type of armor.");
-            }
-        }
-
-        public override void EquipWeapon(Weapon weapon)
-        {
-            if (weapon.RqLevel > Level) throw new InvalidWeaponException("Your level is not high enough!");
-            if (ValidWeaponType.Contains(weapon.Type))
-            {
-                equipment[weapon.SlotPlace] = weapon;
-                Console.WriteLine("You have equiped a weapon: " + weapon.Type);
-            }
-            else
-            {
-                throw new InvalidWeaponException("Your hero cannot equip this type of weapon.");
-            }
         }
 
         public override decimal CalculateDamage()
@@ -77,10 +40,6 @@ namespace RPG_Heroes.Heroes.HeroClasses
                 decimal damage = weaponItem.WeaponDamage * (1 + charDam / 100);
                 return damage;
             }
-        }
-        public override string getHero()
-        {
-            return "Ranger";
         }
     }
 }
