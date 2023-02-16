@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Assignment_1.Heroes.Exceptions;
-using Assignment_1.Items;
+using RPG_Heroes.Heroes.Exceptions;
+using RPG_Heroes.Items;
 
-namespace Assignment_1.Heroes
+namespace RPG_Heroes.Heroes.HeroClasses
 {
-    internal class Mage : Hero
-    {  
+    public class Mage : Hero
+    {
 
-        public Mage (string name): base( name, 1, 
-            new WeaponType[] {WeaponType.staff, WeaponType.wand}, new ArmorType[] { ArmorType.cloth }, 
+        public Mage(string name) : base(name, 1,
+            new WeaponType[] { WeaponType.staff, WeaponType.wand }, new ArmorType[] { ArmorType.cloth },
             new HeroAttribute(1, 1, 8))
-        { 
+        {
         }
 
         public override void LevelUp()
         {
-            this.Level += 1;
-            this.LevelAttributes.Strength += 1;
-            this.LevelAttributes.Dexterity += 1;
-            this.LevelAttributes.Intelligence += 5;
+            Level += 1;
+            LevelAttributes.Strength += 1;
+            LevelAttributes.Dexterity += 1;
+            LevelAttributes.Intelligence += 5;
         }
 
         public override void EquipArmor(Armor armor)
@@ -30,7 +30,16 @@ namespace Assignment_1.Heroes
             if (armor.RqLevel > Level) throw new InvalidArmorException("Your level is not high enough!");
             if (ValidArmorTypes.Contains(armor.Type))
             {
-                equipment[armor.SlotPlace] = (Armor)armor;
+                if (equipment[Slot.Body] != null)
+                {
+                    Armor previousArmor = (Armor) equipment[Slot.Body]; 
+                    this.LevelAttributes.Strength -= previousArmor.ArmorAtribute.Strength;
+                    this.LevelAttributes.Dexterity -= previousArmor.ArmorAtribute.Dexterity;
+                    this.LevelAttributes.Intelligence -= previousArmor.ArmorAtribute.Intelligence;
+
+                }
+                equipment[armor.SlotPlace] = armor;
+                CalculateAttributes();
                 Console.WriteLine("You have equiped a armor: " + armor.Type);
             }
             else
@@ -44,7 +53,7 @@ namespace Assignment_1.Heroes
             if (weapon.RqLevel > Level) throw new InvalidWeaponException("Your level is not high enough!");
             if (ValidWeaponType.Contains(weapon.Type))
             {
-                equipment[weapon.SlotPlace] = (Weapon) weapon;
+                equipment[weapon.SlotPlace] = weapon;
                 Console.WriteLine("You have equiped a weapon: " + weapon.Type);
             }
             else
@@ -56,18 +65,18 @@ namespace Assignment_1.Heroes
         public override decimal CalculateDamage()
         {
 
-            Weapon weaponItem = (Weapon) equipment[Slot.Weapon];
+            Weapon weaponItem = (Weapon)equipment[Slot.Weapon];
             decimal charDam = LevelAttributes.Intelligence;
-            if (weaponItem == null )
+            if (weaponItem == null)
             {
-                return 1*(1+charDam/100);
+                return 1 * (1 + charDam / 100);
             }
             else
             {
-                
-                decimal damage = weaponItem.WeaponDamage * (1 + charDam/100);
+
+                decimal damage = weaponItem.WeaponDamage * (1 + charDam / 100);
                 return damage;
-            }            
+            }
         }
         public override string getHero()
         {

@@ -1,10 +1,10 @@
-﻿using Assignment_1.Items;
+﻿using RPG_Heroes.Items;
 using System.Diagnostics;
 using System.Text;
 
-namespace Assignment_1.Heroes
+namespace RPG_Heroes.Heroes
 {
-    internal class Hero
+    public class Hero
     {
         public string Name { get; set; }
         public int Level { get; set; }
@@ -43,8 +43,6 @@ namespace Assignment_1.Heroes
 
         public virtual string Display()
         {
-            CalculateAttributes();
-
             StringBuilder displayStats= new StringBuilder();
 
             displayStats.Append(" \n");

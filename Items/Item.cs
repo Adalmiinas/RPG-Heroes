@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment_1.Items
+namespace RPG_Heroes.Items
 {
-    internal class Item
+    public class Item
     {
         public string Name { get; set; }   
         public int RqLevel { get; set; }

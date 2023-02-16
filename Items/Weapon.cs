@@ -1,13 +1,13 @@
-﻿using Assignment_1.Heroes;
+﻿using RPG_Heroes.Heroes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment_1.Items
+namespace RPG_Heroes.Items
 {
-    internal class Weapon : Item
+    public class Weapon : Item
     {
         public WeaponType Type { get; set; }  
         

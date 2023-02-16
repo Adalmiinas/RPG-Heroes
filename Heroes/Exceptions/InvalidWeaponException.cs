@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment_1.Heroes.Exceptions
+namespace RPG_Heroes.Heroes.Exceptions
 {
-    internal class InvalidWeaponException: Exception
+    public class InvalidWeaponException: Exception
     {
         public InvalidWeaponException() { }
 

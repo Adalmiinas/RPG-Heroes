@@ -1,9 +1,10 @@
-﻿using Assignment_1.Heroes;
-using Assignment_1.Heroes.Exceptions;
-using Assignment_1.Items;
+﻿using RPG_Heroes.Heroes;
+using RPG_Heroes.Heroes.Exceptions;
+using RPG_Heroes.Heroes.HeroClasses;
+using RPG_Heroes.Items;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Assignment_1
+namespace RPG_Heroes
 {
     internal class Program
     {
@@ -13,20 +14,24 @@ namespace Assignment_1
 
             Boolean cont = true;
             Dictionary<int, Hero> currentHero = new Dictionary<int, Hero> ();
-            Dictionary<int, Weapon> weapons = new Dictionary<int, Weapon> ();
-            weapons.Add(1,new Weapon("Aggressive Axe", 1, Slot.Weapon, WeaponType.axe, 2));
-            weapons.Add(2, new Weapon("Bouncy Bow", 3, Slot.Weapon, WeaponType.bow, 4));
-            weapons.Add(3, new Weapon("Dangerous Dagger", 1, Slot.Weapon, WeaponType.dagger, 5));
-            weapons.Add(4, new Weapon("Hard Hammer", 5, Slot.Weapon, WeaponType.hammer, 9));
-            weapons.Add(5, new Weapon("Tippy Staff", 2, Slot.Weapon, WeaponType.staff, 11));
-            weapons.Add(6, new Weapon("Swift Sword", 4, Slot.Weapon, WeaponType.sword, 28));
-            weapons.Add(7, new Weapon("Windy Wand", 2, Slot.Weapon, WeaponType.wand, 17));
+            Dictionary<int, Weapon> weapons = new Dictionary<int, Weapon>
+            {
+                { 1, new Weapon("Aggressive Axe", 1, Slot.Weapon, WeaponType.axe, 2) },
+                { 2, new Weapon("Bouncy Bow", 3, Slot.Weapon, WeaponType.bow, 4) },
+                { 3, new Weapon("Dangerous Dagger", 1, Slot.Weapon, WeaponType.dagger, 5) },
+                { 4, new Weapon("Hard Hammer", 5, Slot.Weapon, WeaponType.hammer, 9) },
+                { 5, new Weapon("Tippy Staff", 2, Slot.Weapon, WeaponType.staff, 11) },
+                { 6, new Weapon("Swift Sword", 4, Slot.Weapon, WeaponType.sword, 28) },
+                { 7, new Weapon("Windy Wand", 2, Slot.Weapon, WeaponType.wand, 17) }
+            };
 
-            Dictionary<int, Armor> armors = new Dictionary<int, Armor>();
-            armors.Add(1, new Armor("Clingy Cloth", 1, Slot.Body, ArmorType.cloth, new HeroAttribute(1,2,1)));
-            armors.Add(2, new Armor("Lousy Leather", 3, Slot.Body, ArmorType.leather, new HeroAttribute(1, 2, 1)));
-            armors.Add(3, new Armor("Minumum Mail", 2, Slot.Body, ArmorType.mail, new HeroAttribute(1, 2, 1)));
-            armors.Add(4, new Armor("Pretty Plate", 4, Slot.Body, ArmorType.plate, new HeroAttribute(1, 2, 1)));
+            Dictionary<int, Armor> armors = new Dictionary<int, Armor>
+            {
+                { 1, new Armor("Clingy Cloth", 1, Slot.Body, ArmorType.cloth, new HeroAttribute(1, 2, 1)) },
+                { 2, new Armor("Lousy Leather", 3, Slot.Body, ArmorType.leather, new HeroAttribute(1, 2, 1)) },
+                { 3, new Armor("Minumum Mail", 2, Slot.Body, ArmorType.mail, new HeroAttribute(1, 2, 1)) },
+                { 4, new Armor("Pretty Plate", 4, Slot.Body, ArmorType.plate, new HeroAttribute(2, 1, 2)) }
+            };
 
             while (cont) {
                 Console.WriteLine(" \n" +
@@ -123,15 +128,25 @@ namespace Assignment_1
                                 {
                                     Console.WriteLine(i + ": " + armors[i].Name + ". The required level is " + armors[i].RqLevel + ".");
                                 }
-                                int armorNumber = int.Parse(Console.ReadLine());
-                                try
+                                string numberCommand = Console.ReadLine();
+                                int armorNumber;
+                                if (numberCommand != "" || int.TryParse(numberCommand, out armorNumber))
                                 {
-                                    currentHero[1].EquipArmor(armors[armorNumber]);
+                                    armorNumber = int.Parse(numberCommand);
 
+                                    try
+                                    {
+                                        currentHero[1].EquipArmor(armors[armorNumber]);
+
+                                    }
+                                    catch (InvalidArmorException ex)
+                                    {
+                                        Console.WriteLine(ex.Message);
+                                    }
                                 }
-                                catch (InvalidArmorException ex)
+                                else
                                 {
-                                    Console.WriteLine(ex.Message);
+                                    Console.WriteLine("Invalid command!");
                                 }
 
                                 break;
@@ -142,15 +157,24 @@ namespace Assignment_1
                                 {
                                     Console.WriteLine(i + ": " + weapons[i].Name + ". The required level is " + weapons[i].RqLevel + ".");
                                 }
-                                int weaponNumber = int.Parse(Console.ReadLine());
-                                try
+                                string numberCommand2 = Console.ReadLine();
+                                int weaponNumber;
+                                if (numberCommand2 != "" || int.TryParse(numberCommand2, out weaponNumber))
                                 {
-                                    currentHero[1].EquipWeapon(weapons[weaponNumber]);
+                                    weaponNumber = int.Parse(numberCommand2);
+                                    try
+                                    {
+                                        currentHero[1].EquipWeapon(weapons[weaponNumber]);
 
+                                    }
+                                    catch (InvalidWeaponException ex)
+                                    {
+                                        Console.WriteLine(ex.Message);
+                                    }
                                 }
-                                catch (InvalidWeaponException ex)
+                                else
                                 {
-                                    Console.WriteLine(ex.Message);
+                                    Console.WriteLine("Invalid command!");
                                 }
                                 break;
 

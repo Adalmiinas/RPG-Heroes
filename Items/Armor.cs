@@ -1,4 +1,4 @@
-﻿using Assignment_1.Heroes;
+﻿using RPG_Heroes.Heroes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Assignment_1.Items
+namespace RPG_Heroes.Items
 {
-    internal class Armor: Item
+    public class Armor: Item
     {
         public ArmorType Type { get; set; }
         public HeroAttribute ArmorAtribute { get; set; }    

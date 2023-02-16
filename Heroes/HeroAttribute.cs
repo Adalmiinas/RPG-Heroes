@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment_1.Heroes
+namespace RPG_Heroes.Heroes
 {
-    internal class HeroAttribute
+    public class HeroAttribute
     {
         public int Strength { get; set; }
         public int Dexterity { get; set; }
