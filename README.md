@@ -26,10 +26,9 @@ The project covered essential C# features like data structures and exception han
 
 <a name="use"></a>
 ## 5. Usage
-
-*Install Visual Studio with .NET6
-*clone repository 
-*Run applcation on your computer
+* Install Visual Studio with .NET6
+* clone repository 
+* Run applcation on your computer
 
 <a name="aut"></a>
 ## 6. Authors
