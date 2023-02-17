@@ -18,12 +18,16 @@ namespace RPG_Heroes
                 " __)_ \\_____  \\ \r\n |    |   \\|    |   \\    \\_\\  \\ \\    Y    /   " +
                 "     \\ |    |   \\/    |    \\|        \\/        \\\r\n |____|_  /|____|  " +
                 "  \\______  /  \\___|_  /_______  / |____|_  /\\_______  /_______  /_______ " +
-                " /\r\n        \\/                  \\/         \\/        \\/         \\/         \\/        \\/        \\/ \r\n");
+                " /\r\n        \\/                  \\/         \\/        \\/         \\/   " +
+                "      \\/        \\/        \\/ \r\n");
 
-            Boolean cont = true;
+            bool cont = true;
 
-            Dictionary<int, Hero?> currentHero = new Dictionary<int, Hero?> ();
-            currentHero.Add(1, null);
+            //Initialize necessary lists
+            Dictionary<int, Hero?> currentHero = new Dictionary<int, Hero?>
+            {
+                { 1, null }
+            };
 
             Dictionary<int, Weapon> weapons = new Dictionary<int, Weapon>
             {
@@ -44,17 +48,20 @@ namespace RPG_Heroes
                 { 4, new Armor("Pretty Plate", 4, Slot.Body, ArmorType.plate, new HeroAttribute(2, 1, 2)) }
             };
 
-            while (cont) {
-                Console.WriteLine(" \n" +
-                "You can use these commands: \n" +
-                "hero - create a new hero \n" +
-                "level - level up your character \n" +
-                "equip - get a armor or weapon \n"+ 
-                "display - details of your Hero \n" +
-                "bye - stop the program " + "\n");
-                String command = Console.ReadLine();
-                
+            Console.WriteLine(" \n" +
+            "You can use these commands: \n" +
+            "hero - create a new hero \n" +
+            "level - level up your character \n" +
+            "equip - get a armor or weapon \n" +
+            "display - details of your Hero \n" +
+            "bye - stop the program " + "\n");
 
+            //Loops through until the user gives a command to stop
+            while (cont) {
+                Console.WriteLine("\n" +"Commands: hero/level/equip/display/bye \n");
+                String command = Console.ReadLine();
+
+                //switches to the correct case by users command
                 switch (command)
                 {
                     case "hero":

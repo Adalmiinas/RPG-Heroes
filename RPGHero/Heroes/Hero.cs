@@ -7,13 +7,25 @@ namespace RPG_Heroes.Heroes
 {
     public class Hero
     {
+        //Name of the hero
         public string Name { get; set; }
+
+        //Level of the hero
         public int Level { get; set; }
+
+        //Heros Class
         public string CharacterClass { get; set; }
 
+        //Heros valid weapon types
         public WeaponType[] ValidWeaponType { get;  set;}
+
+        //Heros valid armor types
         public ArmorType[] ValidArmorTypes { get; set; }
+
+        //Heros attributes
         public HeroAttribute LevelAttributes { get; set; }
+
+        //Heros equitment
         public Dictionary<Slot, Item?> equipment { get; set; } 
 
         public Hero(string name, int level, string CharacterClass, WeaponType [] ValidW, ArmorType [] ValidA, HeroAttribute LevelAttributes)
@@ -35,11 +47,17 @@ namespace RPG_Heroes.Heroes
         {
 
         }
+
+        //Equip armor for the hero
         public void EquipArmor(Armor armor)
         {
+            //Throw exception if heros level is not high enough for it 
             if (armor.RqLevel > Level) throw new InvalidArmorException("Your level is not high enough!");
+
+            //Throw exeption if hero tries to equip invalid armor type
             if (ValidArmorTypes.Contains(armor.Type))
             {
+                //Delete the previous armors attributes if there is any
                 if (equipment[Slot.Body] != null)
                 {
                     Armor previousArmor = (Armor)equipment[Slot.Body];
@@ -57,10 +75,13 @@ namespace RPG_Heroes.Heroes
                 throw new InvalidArmorException("Your hero cannot equip this type of armor.");
             }
 
-        }
+        }//Equip weapon for the hero
         public void EquipWeapon(Weapon weapon)
         {
+            //Throw exception if heros level is not high enough for it 
             if (weapon.RqLevel > Level) throw new InvalidWeaponException("Your level is not high enough!");
+            
+            //Throw exception if hero tries to equip invalid weapon type
             if (ValidWeaponType.Contains(weapon.Type))
             {
                 equipment[weapon.SlotPlace] = weapon;
@@ -71,6 +92,8 @@ namespace RPG_Heroes.Heroes
                 throw new InvalidWeaponException("Your hero cannot equip this type of weapon.");
             }
         }
+
+        //Display all info about the hero
         public virtual string Display()
         {
             StringBuilder displayStats= new StringBuilder();
@@ -89,6 +112,7 @@ namespace RPG_Heroes.Heroes
 
         }
 
+        //Calculate the attributes again if armor is added
         public void CalculateAttributes(){
             
             foreach (Item? item in equipment.Values)

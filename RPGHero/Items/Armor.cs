@@ -10,7 +10,10 @@ namespace RPG_Heroes.Items
 {
     public class Armor: Item
     {
+        //Type of armor
         public ArmorType Type { get; set; }
+
+        //Armors attributes that increase heros attributes
         public HeroAttribute ArmorAtribute { get; set; }    
 
         public Armor(String name, int rqlevel, Slot slot, ArmorType armor, HeroAttribute armorAtribute) : base(name, rqlevel, slot)

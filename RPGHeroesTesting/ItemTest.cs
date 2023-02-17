@@ -17,6 +17,8 @@ namespace RPGHeroesTesting
             string expectedName = "Clingy Cloth";
             int expectedLevel = 1;
             ArmorType expectedArmorType = ArmorType.cloth;
+            Slot expectedSlot = testArmor.SlotPlace;
+            HeroAttribute expectedAttribute = testArmor.ArmorAtribute;
 
             //Act
 
@@ -24,11 +26,15 @@ namespace RPGHeroesTesting
             int actualLevel = testHero.equipment[Slot.Body].RqLevel;
             Armor userArmor = (Armor)testHero.equipment[Slot.Body];
             ArmorType actualType = userArmor.Type;
+            Slot actualSlot = userArmor.SlotPlace;
+            HeroAttribute actualAttribute = userArmor.ArmorAtribute;
 
             //Assert
             Assert.Equal(expectedName, actualName);
             Assert.Equal(expectedLevel, actualLevel);
             Assert.Equal(expectedArmorType, actualType);
+            Assert.Equal(expectedSlot, actualSlot);
+            Assert.Equal(expectedAttribute, actualAttribute);
 
         }
 
@@ -43,6 +49,8 @@ namespace RPGHeroesTesting
             string expectedName = "Tippy Staff";
             int expectedLevel = 2;
             WeaponType expectedWeaponType = WeaponType.staff;
+            Slot expectedSlot = testWeapon.SlotPlace;
+            int expectedDamage = testWeapon.WeaponDamage;
 
             //Act
 
@@ -50,11 +58,15 @@ namespace RPGHeroesTesting
             int actualLevel = testHero.equipment[Slot.Weapon].RqLevel;
             Weapon userWeapon = (Weapon)testHero.equipment[Slot.Weapon];
             WeaponType actualType = userWeapon.Type;
+            Slot actualSlot = testWeapon.SlotPlace;
+            int actualDamage = userWeapon.WeaponDamage;
 
             //Assert
             Assert.Equal(expectedName, actualName);
             Assert.Equal(expectedLevel, actualLevel);
             Assert.Equal(expectedWeaponType, actualType);
+            Assert.Equal(expectedSlot, actualSlot);
+            Assert.Equal(expectedDamage, actualDamage);
 
         }
 

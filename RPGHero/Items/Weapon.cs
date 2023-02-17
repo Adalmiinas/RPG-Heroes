@@ -9,8 +9,10 @@ namespace RPG_Heroes.Items
 {
     public class Weapon : Item
     {
+        //type of weapon
         public WeaponType Type { get; set; }  
         
+        //Damage the weapon causes
         public int WeaponDamage { get; set; }
 
         public Weapon(string name, int rqlevel, Slot slot,

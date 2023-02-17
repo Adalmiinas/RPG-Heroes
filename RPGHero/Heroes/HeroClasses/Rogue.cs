@@ -18,6 +18,7 @@ namespace RPG_Heroes.Heroes.HeroClasses
         {
         }
 
+        //Level up character with it's own values
         public override void LevelUp()
         {
             Level += 1;
@@ -25,6 +26,9 @@ namespace RPG_Heroes.Heroes.HeroClasses
             LevelAttributes.Dexterity += 4;
             LevelAttributes.Intelligence += 1;
         }
+        //Calculate the damage that the hero creates
+        //Damage formula 
+        //Hero Damage = WeaponDamage * (1+ DamagingAttribute/100) 
         public override decimal CalculateDamage()
         {
 

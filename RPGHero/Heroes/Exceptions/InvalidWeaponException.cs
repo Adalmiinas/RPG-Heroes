@@ -8,7 +8,9 @@ namespace RPG_Heroes.Heroes.Exceptions
 {
     public class InvalidWeaponException: Exception
     {
-        public InvalidWeaponException() { }
+        public InvalidWeaponException() 
+        { 
+        }
 
         public InvalidWeaponException(string? message) : base(message)
         {
