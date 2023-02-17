@@ -76,7 +76,7 @@ namespace RPG_Heroes.Heroes
             StringBuilder displayStats= new StringBuilder();
 
             displayStats.Append(" \n");
-            displayStats.Append("Your character: \n");
+            displayStats.Append("YOUR HERO \n");
             displayStats.Append("Name: " + Name + "\n");
             displayStats.Append("Class: " + CharacterClass + "\n");
             displayStats.Append("Total strength: " + this.LevelAttributes.Strength + "\n");
